@@ -23,4 +23,9 @@ public class King implements Piece{
             imageURL = getClass().getResource("../../img/w_king.png");
     }
 
+    @Override
+    public boolean isValidMove(int ix, int iy, int fx, int fy) {
+        return false;
+    }
+
 }

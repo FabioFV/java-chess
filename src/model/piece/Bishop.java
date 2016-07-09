@@ -22,4 +22,9 @@ public class Bishop implements Piece{
         else
             imageURL = getClass().getResource("../../img/w_bishop.png");
     }
+
+    @Override
+    public boolean isValidMove(int ix, int iy, int fx, int fy) {
+        return false;
+    }
 }

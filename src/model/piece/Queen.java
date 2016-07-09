@@ -23,4 +23,8 @@ public class Queen implements Piece{
             imageURL = getClass().getResource("../../img/w_queen.png");
     }
 
+    @Override
+    public boolean isValidMove(int ix, int iy, int fx, int fy) {
+        return false;
+    }
 }
