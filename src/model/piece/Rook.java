@@ -7,6 +7,7 @@ import java.net.URL;
 public class Rook implements Piece{
 
     private URL imageURL;
+    private PieceColor mColor;
 
     @Override
     public void draw(Graphics g, int x, int y) {
@@ -16,6 +17,7 @@ public class Rook implements Piece{
 
     @Override
     public void setColor(PieceColor color) {
+        mColor = color;
 
         if(color == PieceColor.BLACK)
             imageURL = getClass().getResource("../../img/b_rook.png");
