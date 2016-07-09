@@ -46,6 +46,11 @@ public class PieceFactory {
             return p;
         }
 
+        if(type == PieceType.BLANK)
+        {
+            Piece p = new Blank();
+            return p;
+        }
         return null;
     }
 
