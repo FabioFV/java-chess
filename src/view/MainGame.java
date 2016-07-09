@@ -1,17 +1,26 @@
 package view;
 
-import javax.swing.*;
+import model.Board;
 
-public class MainGame extends JFrame{
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
+public class MainGame extends JFrame implements Runnable{
 
     private static final String TITLE = "Java Chess";
-    private static final int HEIGHT = 480;
+    private static final int HEIGHT = 510;
     private static final int WIDTH = 480;
+    private static final int FPS = 60;
+
+    private boolean running;
+    private long targetTime = 1000 / FPS;
 
     private JMenuBar menuBar;
 
-    private void createMenuBar()
-    {
+    Board board;
+
+    private void createMenuBar() {
         menuBar = new JMenuBar();
 
         JMenu menu = new JMenu("File");
@@ -25,8 +34,7 @@ public class MainGame extends JFrame{
         menuBar.add(menu);
     }
 
-    MainGame()
-    {
+    MainGame() {
         setTitle(TITLE);
         setSize(WIDTH,HEIGHT);
         setResizable(false);
@@ -37,6 +45,64 @@ public class MainGame extends JFrame{
         setJMenuBar(menuBar);
 
         setVisible(true);
+        init();
+    }
+
+    private void init() {
+        board = new Board();
+        running = true;
+        run();
+    }
+
+    private void update()
+    {
+
+    }
+
+    private void draw()
+    {
+        BufferStrategy bs = this.getBufferStrategy();
+        if(bs == null){
+            createBufferStrategy(3);
+            return;
+        }
+        Graphics g = bs.getDrawGraphics();
+
+        board.draw(g);
+
+        g.dispose();
+        bs.show();
+    }
+
+    @Override
+    public void run() {
+
+        long start;
+        long elapsed;
+        long wait;
+
+        while(running)
+        {
+            start = System.nanoTime();
+
+                update();
+                draw();
+
+            elapsed = System.nanoTime() - start;
+            wait = targetTime - elapsed / 1000000;
+
+            if(wait < 0)
+                wait = 12;
+
+            try{
+                Thread.sleep(wait);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
+        }
     }
 
     public static void main(String args[]){
