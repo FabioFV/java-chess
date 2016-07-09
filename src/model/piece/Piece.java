@@ -1,4 +1,5 @@
-package piece;
+package model.piece;
 
 public interface Piece {
+
 }

@@ -1,8 +1,8 @@
-package piece;
+package model.piece;
 
 public class PieceFactory {
 
-    public Piece getPiece(PieceType type)
+    public Piece getPiece(PieceType type, PieceColor color)
     {
         if(type == PieceType.BISHOP)
             return new Bishop();
