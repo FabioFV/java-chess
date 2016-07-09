@@ -5,22 +5,46 @@ public class PieceFactory {
     public Piece getPiece(PieceType type, PieceColor color)
     {
         if(type == PieceType.BISHOP)
-            return new Bishop();
+        {
+            Piece p = new Bishop();
+            p.setColor(color);
+            return p;
+        }
 
         if(type == PieceType.KING)
-            return new King();
+        {
+            Piece p = new King();
+            p.setColor(color);
+            return p;
+        }
 
         if(type == PieceType.KNIGHT)
-            return new Knight();
+        {
+            Piece p = new Knight();
+            p.setColor(color);
+            return p;
+        }
 
         if(type == PieceType.PAWN)
-            return new Pawn();
+        {
+            Piece p = new Pawn();
+            p.setColor(color);
+            return p;
+        }
 
         if(type == PieceType.QUEEN)
-            return new Queen();
+        {
+            Piece p = new Queen();
+            p.setColor(color);
+            return p;
+        }
 
         if(type == PieceType.ROOK)
-            return new Rook();
+        {
+            Piece p = new Rook();
+            p.setColor(color);
+            return p;
+        }
 
         return null;
     }
