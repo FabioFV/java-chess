@@ -27,7 +27,19 @@ public class King implements Piece{
 
     @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
-        return false;
+        int x = initPos.x;
+        int y = initPos.y;
+
+        if(finalPos.x == x + 1 && finalPos.y == y) return true;
+        if(finalPos.x == x - 1 && finalPos.y == y) return true;
+        if(finalPos.y == y + 1 && finalPos.x == x) return true;
+        if(finalPos.y == y - 1 && finalPos.x == x) return true;
+        if(finalPos.y == y - 1 && finalPos.x == x - 1) return true;
+        if(finalPos.y == y + 1 && finalPos.x == x + 1) return true;
+        if(finalPos.y == y - 1 && finalPos.x == x + 1) return true;
+        if(finalPos.y == y + 1 && finalPos.x == x - 1) return true;
+
+        else return false;
     }
 
     @Override
