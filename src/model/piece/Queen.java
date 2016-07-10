@@ -35,7 +35,7 @@ public class Queen implements Piece{
         Piece dummyBishop = factory.getPiece(PieceType.BISHOP, PieceColor.WHITE);
         Piece dummyRook = factory.getPiece(PieceType.ROOK, PieceColor.WHITE);
 
-        if(dummyBishop.isValidMove(initPos, finalPos) && dummyRook.isValidMove(initPos, finalPos))
+        if(dummyBishop.isValidMove(initPos, finalPos) || dummyRook.isValidMove(initPos, finalPos))
             return true;
 
         return false;
