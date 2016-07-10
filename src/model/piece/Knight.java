@@ -26,7 +26,7 @@ public class Knight implements Piece{
     }
 
     @Override
-    public boolean isValidMove(int ix, int iy, int fx, int fy) {
+    public boolean isValidMove(Point initPos, Point finalPos) {
         return false;
     }
 
