@@ -2,9 +2,7 @@ package view;
 
 import controller.MainGameController;
 import model.Board;
-import model.piece.Blank;
-import model.piece.Piece;
-import model.piece.PieceColor;
+import model.piece.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +39,8 @@ public class MainGame extends JFrame implements Runnable{
 
     public static void clickTail(Point p)
     {
+        PieceFactory factory = new PieceFactory();
+
         if(initPos == null) {
             initPos = p;
             Piece piece = Board.mBoard[p.x][p.y];
@@ -76,7 +76,31 @@ public class MainGame extends JFrame implements Runnable{
                     firstPlayerMove = false;
                 else
                     firstPlayerMove = true;
+
+            } else if(piece.getClass() != Blank.class && selectedPiece.isValidMove(initPos, finalPos)) {
+
+                if(piece.getColor() == PieceColor.BLACK && firstPlayerMove) {
+
+                    Board.mBoard[p.x][p.y] = selectedPiece;
+                    Board.mBoard[initPos.x][initPos.y] = factory.getPiece(PieceType.BLANK, null);
+
+                    if(firstPlayerMove)
+                        firstPlayerMove = false;
+                    else
+                        firstPlayerMove = true;
+                }
+                else if(piece.getColor() == PieceColor.WHITE && !firstPlayerMove) {
+
+                    Board.mBoard[p.x][p.y] = selectedPiece;
+                    Board.mBoard[initPos.x][initPos.y] = factory.getPiece(PieceType.BLANK, null);
+
+                    if(firstPlayerMove)
+                        firstPlayerMove = false;
+                    else
+                        firstPlayerMove = true;
+                }
             }
+
 
             initPos = null;
             finalPos = null;
