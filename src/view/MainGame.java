@@ -26,21 +26,7 @@ public class MainGame extends JFrame implements Runnable{
 
     private static Point initPos = null;
     private static Point finalPos = null;
-
-    private void createMenuBar() {
-        menuBar = new JMenuBar();
-
-        JMenu menu = new JMenu("File");
-
-        JMenuItem newGameItem = new JMenuItem("New Game");
-        JMenuItem exitItem = new JMenuItem("Exit");
-
-        menu.add(newGameItem);
-        menu.add(exitItem);
-
-        menuBar.add(menu);
-    }
-
+    
     MainGame() {
         setTitle(TITLE);
         setSize(WIDTH,HEIGHT);
@@ -48,9 +34,6 @@ public class MainGame extends JFrame implements Runnable{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         addMouseListener(new MainGameController());
-
-//        createMenuBar();
-//        setJMenuBar(menuBar);
 
         setVisible(true);
         init();
