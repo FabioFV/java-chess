@@ -4,6 +4,7 @@ import controller.MainGameController;
 import model.Board;
 import model.piece.Blank;
 import model.piece.Piece;
+import model.piece.PieceColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,16 +18,15 @@ public class MainGame extends JFrame implements Runnable{
     private static final int FPS = 60;
 
     private boolean running;
-    private long targetTime = 1000 / FPS;
-
-    private JMenuBar menuBar;
 
     private Board board;
     private boolean[][] grid = new boolean[8][8];
 
     private static Point initPos = null;
     private static Point finalPos = null;
-    
+
+    private static boolean firstPlayerMove = true;
+
     MainGame() {
         setTitle(TITLE);
         setSize(WIDTH,HEIGHT);
@@ -41,8 +41,25 @@ public class MainGame extends JFrame implements Runnable{
 
     public static void clickTail(Point p)
     {
-        if(initPos == null)
+        if(initPos == null) {
             initPos = p;
+            Piece piece = Board.mBoard[p.x][p.y];
+
+            if(piece.getClass() == Blank.class) {
+                initPos = null;
+            }
+            else {
+                if(firstPlayerMove) {
+                    if(piece.getColor() == PieceColor.BLACK)
+                        initPos = null;
+                }
+                else {
+                    if(piece.getColor() == PieceColor.WHITE)
+                        initPos = null;
+                }
+            }
+
+        }
         else
         {
             finalPos = p;
@@ -54,6 +71,11 @@ public class MainGame extends JFrame implements Runnable{
             {
                 Board.mBoard[initPos.x][initPos.y] = piece;
                 Board.mBoard[p.x][p.y] = selectedPiece;
+
+                if(firstPlayerMove)
+                    firstPlayerMove = false;
+                else
+                    firstPlayerMove = true;
             }
 
             initPos = null;
@@ -122,6 +144,7 @@ public class MainGame extends JFrame implements Runnable{
     @Override
     public void run() {
 
+        long targetTime = 1000 / FPS;
         long start;
         long elapsed;
         long wait;
