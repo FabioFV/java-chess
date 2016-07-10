@@ -27,7 +27,13 @@ public class Rook implements Piece{
 
     @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
-        return false;
+        int x = initPos.x;
+        int y = initPos.y;
+
+        if(finalPos.x == x || finalPos.y == y)
+            return true;
+        else
+            return false;
     }
 
     @Override
