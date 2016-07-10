@@ -32,6 +32,30 @@ public class Pawn implements Piece{
 
     @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
+        int x = initPos.x;
+        int y = initPos.y;
+
+        if(this.mColor == PieceColor.WHITE){
+            if(y == 6 && ( y - finalPos.y >= 0 && y - finalPos.y <= 2)
+                    && (x == finalPos.x || x == finalPos.x - 1 || x == finalPos.x + 1)){
+                return true;
+            }
+            else if ( y - finalPos.y == 1 && (x == finalPos.x || x == finalPos.x - 1 || x == finalPos.x + 1)){
+                return true;
+            }
+            return false;
+        }
+        if(this.mColor == PieceColor.BLACK){
+            if(y == 1 && ( finalPos.y - y >= 0 && finalPos.y - y <= 2)
+                    && (x == finalPos.x || x == finalPos.x - 1 || x == finalPos.x + 1)){
+                return true;
+            }
+            else if ( finalPos.y - y == 1 && (x == finalPos.x || x == finalPos.x - 1 || x == finalPos.x + 1)){
+                return true;
+            }
+            return false;
+        }
+
         return false;
     }
 
