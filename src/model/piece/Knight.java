@@ -27,6 +27,26 @@ public class Knight implements Piece{
 
     @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
+        int x = initPos.x;
+        int y = initPos.y;
+
+        if(finalPos.equals(new Point(x+1,y+2)))
+            return true;
+        else if(finalPos.equals(new Point(x+1,y-2)))
+            return true;
+        else if(finalPos.equals(new Point(x-1,y+2)))
+            return true;
+        else if(finalPos.equals(new Point(x-1,y-2)))
+            return true;
+        else if(finalPos.equals(new Point(x+2,y+1)))
+            return true;
+        else if(finalPos.equals(new Point(x+2,y-1)))
+            return true;
+        else if(finalPos.equals(new Point(x-2,y+1)))
+            return true;
+        else if(finalPos.equals(new Point(x-2,y-1)))
+            return true;
+
         return false;
     }
 
