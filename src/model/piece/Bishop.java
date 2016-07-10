@@ -27,7 +27,19 @@ public class Bishop implements Piece{
 
     @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
-        return false;
+        int x = initPos.x;
+        int y = initPos.y;
+        int xDiference, yDiference;
+
+        if(x > finalPos.x) xDiference = x - finalPos.x;
+        else xDiference = finalPos.x - x;
+
+        if(y > finalPos.y) yDiference = y - finalPos.y;
+        else yDiference = finalPos.y - y;
+
+        if(xDiference == yDiference) return true;
+
+       return false;
     }
 
     @Override
