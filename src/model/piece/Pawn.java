@@ -26,6 +26,11 @@ public class Pawn implements Piece{
     }
 
     @Override
+    public PieceColor getColor() {
+        return mColor;
+    }
+
+    @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
         return false;
     }

@@ -30,4 +30,9 @@ public class King implements Piece{
         return false;
     }
 
+    @Override
+    public PieceColor getColor() {
+        return mColor;
+    }
+
 }

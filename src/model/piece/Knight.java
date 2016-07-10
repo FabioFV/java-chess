@@ -30,4 +30,9 @@ public class Knight implements Piece{
         return false;
     }
 
+    @Override
+    public PieceColor getColor() {
+        return mColor;
+    }
+
 }

@@ -29,4 +29,9 @@ public class Rook implements Piece{
     public boolean isValidMove(Point initPos, Point finalPos) {
         return false;
     }
+
+    @Override
+    public PieceColor getColor() {
+        return mColor;
+    }
 }

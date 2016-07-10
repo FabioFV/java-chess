@@ -18,4 +18,9 @@ public class Blank implements Piece{
     public void setColor(PieceColor color) {
 
     }
+
+    @Override
+    public PieceColor getColor() {
+        return null;
+    }
 }
