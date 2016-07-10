@@ -27,6 +27,17 @@ public class Queen implements Piece{
 
     @Override
     public boolean isValidMove(Point initPos, Point finalPos) {
+        int x = initPos.x;
+        int y = initPos.y;
+        boolean validBishopMove, validRookMove;
+
+        PieceFactory factory = new PieceFactory();
+        Piece dummyBishop = factory.getPiece(PieceType.BISHOP, PieceColor.WHITE);
+        Piece dummyRook = factory.getPiece(PieceType.ROOK, PieceColor.WHITE);
+
+        if(dummyBishop.isValidMove(initPos, finalPos) && dummyRook.isValidMove(initPos, finalPos))
+            return true;
+
         return false;
     }
 
