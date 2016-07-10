@@ -2,6 +2,8 @@ package view;
 
 import controller.MainGameController;
 import model.Board;
+import model.piece.Blank;
+import model.piece.Piece;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,7 +61,21 @@ public class MainGame extends JFrame implements Runnable{
         if(initPos == null)
             initPos = p;
         else
+        {
             finalPos = p;
+
+            Piece piece = Board.mBoard[p.x][p.y];
+            Piece selectedPiece = Board.mBoard[initPos.x][initPos.y];
+
+            if(piece.getClass() == Blank.class && selectedPiece.isValidMove(initPos, finalPos))
+            {
+                Board.mBoard[initPos.x][initPos.y] = piece;
+                Board.mBoard[p.x][p.y] = selectedPiece;
+            }
+
+            initPos = null;
+            finalPos = null;
+        }
     }
 
     private void init() {

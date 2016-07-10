@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class Board {
 
-    Piece[][] mBoard = new Piece[8][8];
+    public static Piece[][] mBoard = new Piece[8][8];
     private URL IMAGE_URL = getClass().getResource("../img/board.png");
 
     PieceFactory factory;
