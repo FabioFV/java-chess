@@ -1,9 +1,6 @@
 package model;
 
-import model.piece.Piece;
-import model.piece.PieceColor;
-import model.piece.PieceFactory;
-import model.piece.PieceType;
+import model.piece.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,6 +71,178 @@ public class Board {
         }
 
 
+    }
+
+    public boolean pieceCanPass(Point initPos, Point finalPos, Piece piece)
+    {
+        if(piece.getClass() == Bishop.class)
+        {
+            if(initPos.x > finalPos.x && initPos.y > finalPos.y)
+            {
+                for (int i = initPos.x - 1, j = initPos.y - 1; i > finalPos.x; i--, j--) {
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x < finalPos.x && initPos.y < finalPos.y)
+            {
+                for (int i = initPos.x + 1, j = initPos.y + 1; i < finalPos.x; i++, j++) {
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x < finalPos.x && initPos.y > finalPos.y)
+            {
+                for (int i = initPos.x + 1, j = initPos.y - 1; i < finalPos.x; i++, j--) {
+                    System.out.println("["+i+","+j+"]");
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x > finalPos.x && initPos.y < finalPos.y)
+            {
+                for (int i = initPos.x - 1, j = initPos.y + 1; i > finalPos.x; i--, j++) {
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+        }
+
+        else if(piece.getClass() == Rook.class){
+            if(initPos.x == finalPos.x)
+            {
+                if(initPos.y > finalPos.y)
+                {
+                    for (int i = initPos.y - 1; i > finalPos.y; i--) {
+                        if(mBoard[initPos.x][i].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+                else
+                {
+                    for (int i = initPos.y + 1; i < finalPos.y; i++) {
+                        if(mBoard[initPos.x][i].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+            }
+            else
+            {
+                if(initPos.x > finalPos.x)
+                {
+                    for (int i = initPos.x - 1; i > finalPos.x; i--) {
+                        if(mBoard[i][initPos.y].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+                else
+                {
+                    for (int i = initPos.x + 1; i < finalPos.x; i++) {
+                        System.out.println(i);
+                        if(mBoard[i][initPos.y].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+            }
+        }
+
+        else if(piece.getClass() == Pawn.class) {
+
+            int xDiference, yDiference;
+
+            if(initPos.x > finalPos.x)
+                xDiference = initPos.x - finalPos.x;
+            else
+                xDiference = finalPos.x - initPos.x;
+
+            if(initPos.y > finalPos.y)
+                yDiference = initPos.y - finalPos.y;
+            else
+                yDiference = finalPos.y - initPos.y;
+
+            if(xDiference == yDiference)
+            {
+                if(mBoard[finalPos.x][finalPos.y].getClass() == Blank.class)
+                    return false;
+            }
+
+        }
+        else if(piece.getClass() == Queen.class){
+            if(initPos.x > finalPos.x && initPos.y > finalPos.y)
+            {
+                for (int i = initPos.x - 1, j = initPos.y - 1; i > finalPos.x; i--, j--) {
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x < finalPos.x && initPos.y < finalPos.y)
+            {
+                for (int i = initPos.x + 1, j = initPos.y + 1; i < finalPos.x; i++, j++) {
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x < finalPos.x && initPos.y > finalPos.y)
+            {
+                for (int i = initPos.x + 1, j = initPos.y - 1; i < finalPos.x; i++, j--) {
+                    System.out.println("["+i+","+j+"]");
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x > finalPos.x && initPos.y < finalPos.y)
+            {
+                for (int i = initPos.x - 1, j = initPos.y + 1; i > finalPos.x; i--, j++) {
+                    if(mBoard[i][j].getClass() != Blank.class)
+                        return false;
+                }
+            }
+
+            if(initPos.x == finalPos.x && initPos.y != finalPos.y)
+            {
+                if(initPos.y > finalPos.y)
+                {
+                    for (int i = initPos.y - 1; i > finalPos.y; i--) {
+                        if(mBoard[initPos.x][i].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+                else
+                {
+                    for (int i = initPos.y + 1; i < finalPos.y; i++) {
+                        if(mBoard[initPos.x][i].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+            }
+
+            if(initPos.y == finalPos.y && initPos.x != finalPos.x)
+            {
+                if(initPos.x > finalPos.x)
+                {
+                    for (int i = initPos.x - 1; i > finalPos.x; i--) {
+                        if(mBoard[i][initPos.y].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+                else
+                {
+                    for (int i = initPos.x + 1; i < finalPos.x; i++) {
+                        System.out.println(i);
+                        if(mBoard[i][initPos.y].getClass() != Blank.class)
+                            return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 
 }

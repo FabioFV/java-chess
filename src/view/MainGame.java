@@ -17,7 +17,7 @@ public class MainGame extends JFrame implements Runnable{
 
     private boolean running;
 
-    private Board board;
+    private static Board board;
     private boolean[][] grid = new boolean[8][8];
 
     private static Point initPos = null;
@@ -67,7 +67,8 @@ public class MainGame extends JFrame implements Runnable{
             Piece piece = Board.mBoard[p.x][p.y];
             Piece selectedPiece = Board.mBoard[initPos.x][initPos.y];
 
-            if(piece.getClass() == Blank.class && selectedPiece.isValidMove(initPos, finalPos))
+            if(piece.getClass() == Blank.class && selectedPiece.isValidMove(initPos, finalPos)
+                    && board.pieceCanPass(initPos, finalPos, selectedPiece))
             {
                 Board.mBoard[initPos.x][initPos.y] = piece;
                 Board.mBoard[p.x][p.y] = selectedPiece;
@@ -77,7 +78,8 @@ public class MainGame extends JFrame implements Runnable{
                 else
                     firstPlayerMove = true;
 
-            } else if(piece.getClass() != Blank.class && selectedPiece.isValidMove(initPos, finalPos)) {
+            } else if(piece.getClass() != Blank.class && selectedPiece.isValidMove(initPos, finalPos)
+                    && board.pieceCanPass(initPos, finalPos, selectedPiece)) {
 
                 if(piece.getColor() == PieceColor.BLACK && firstPlayerMove) {
 
