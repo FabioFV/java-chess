@@ -3,10 +3,9 @@ package controller;
 import view.MainGame;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
-public class MainGameController implements MouseListener{
+public class MainGameController implements MouseListener, KeyListener{
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -34,6 +33,22 @@ public class MainGameController implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent mouseEvent) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent keyEvent) {
+        if(keyEvent.getKeyChar() == KeyEvent.VK_N)
+            MainGame.newGame();
+    }
+
+    @Override
+    public void keyPressed(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent keyEvent) {
 
     }
 }

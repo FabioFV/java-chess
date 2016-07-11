@@ -32,9 +32,15 @@ public class MainGame extends JFrame implements Runnable{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         addMouseListener(new MainGameController());
+        addKeyListener(new MainGameController());
 
         setVisible(true);
         init();
+    }
+
+    public static void newGame()
+    {
+        board = new Board();
     }
 
     public static void clickTail(Point p)
