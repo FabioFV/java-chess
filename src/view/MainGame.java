@@ -10,7 +10,7 @@ import java.awt.image.BufferStrategy;
 
 public class MainGame extends JFrame implements Runnable{
 
-    private static final String TITLE = "Java Chess";
+    private String mTitle = "Java Chess - Player 1 [WHITE]";
     private static final int HEIGHT = 510;
     private static final int WIDTH = 480;
     private static final int FPS = 60;
@@ -26,7 +26,7 @@ public class MainGame extends JFrame implements Runnable{
     private static boolean firstPlayerMove = true;
 
     MainGame() {
-        setTitle(TITLE);
+        setTitle(mTitle);
         setSize(WIDTH,HEIGHT);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -140,6 +140,10 @@ public class MainGame extends JFrame implements Runnable{
         if(finalPos != null)
             grid[finalPos.x][finalPos.y] = true;
 
+        if(firstPlayerMove)
+            setTitle("Java Chess - Player 1 [WHITE]");
+        else
+            setTitle("Java Chess - Player 2 [BLACK]");
     }
 
     private void draw()
